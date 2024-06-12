@@ -1,0 +1,33 @@
+parse_text_task:
+  description: >
+    Parse the provided natural language {filter_text} to generate a filter formula for contracts.
+  expected_output: >
+    A filter formula based on the input text for contracts. The return format should be exactly as shown. Nothing less and nothing more. 
+    The output should be a single string containing the filter formula without any additional text or formatting.
+    Ensure to capture all the mentioned criteria in the input and construct the filter formula accordingly.
+    Example format:
+      Date-related examples:
+        - Input: "Show me contracts created in last 7 days"
+          Output: "And(And(GreaterThanOrEqual([workflowCreatedDate], RelativeDate(Today(), -7, \"days\")), LessThanOrEqual([workflowCreatedDate], Today())))"
+        - Input: "Show me contracts created in the last month"
+          Output: "And(And(GreaterThanOrEqual([workflowCreatedDate], RelativeDate(Today(), -30, \"days\")), LessThanOrEqual([workflowCreatedDate], Today())))"
+
+      Type-related examples:
+        - Input: "Show me contacts if record type NDA and Imported"
+          Output: "And(In([recordTypeId], \"nda\", \"imported\"))"
+        - Input: "Show me contracts of record type NDA"
+          Output: "And(Equals([recordTypeId], \"nda\"))"
+        - Input: "Show me all the records with record type as nda and esa and imported"
+          Output: "And(In([recordTypeId], \"nda\", \"esa\", \"imported\"))"
+
+      Stage-related examples:
+        - Input: "Show me contracts which are at the stage review"
+          Output: "And(Equals([workflowDetailsCombinedStage], \"review\"))"
+        - Input: "Show me contracts which are at the stage approval"
+          Output: "And(Equals([workflowDetailsCombinedStage], \"approval\"))"
+    
+      AND operator examples:
+        - Input: "Show me contracts created in last 7 days and record type NDA"
+          Output: "And(And(GreaterThanOrEqual([workflowCreatedDate], RelativeDate(Today(), -7, "days")), LessThanOrEqual([workflowCreatedDate], Today())), Equals([recordTypeId], "nda"))"
+        - Input: "Show me contracts created in last 7 days and record type NDA and stage review"
+          Output: "And(And(GreaterThanOrEqual([workflowCreatedDate], RelativeDate(Today(), -7, "days")), LessThanOrEqual([workflowCreatedDate], Today())), Equals([recordTypeId], "nda"), Equals([workflowDetailsCombinedStage], "review"))"

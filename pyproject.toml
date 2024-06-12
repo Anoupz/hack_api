@@ -1,0 +1,46 @@
+[tool.poetry]
+name = "hackathon"
+version = "0.1.0"
+description = "A Hackathon project"
+authors = ["Anoop Narayanan <anoop.narayanan@ironcladhq.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "3.12.3"
+requests = "^2.31.0"
+crewai = { extras = ["tools"], version = "^0.30.11" }
+flask = "^3.0.3"
+black = "^24.4.2"
+ruff = "^0.4.5"
+langchain-groq = "^0.1.4"
+agentops = "^0.2.2"
+
+
+[tool.ruff]
+line-length = 88  # Match this with black's line length
+exclude = ["tests/", "build/", "dist/"]  # Add any directories you want to exclude
+
+
+[tool.black]
+line-length = 88  # Ensure this is consistent with ruff's line length
+target-version = ['py310']
+exclude = '''
+/(
+    \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.nox
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+)/
+'''
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
