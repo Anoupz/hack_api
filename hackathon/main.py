@@ -2,6 +2,8 @@ import logging
 
 import agentops
 from flask import Flask, request, jsonify
+from flask_cors import CORS
+
 from hackathon.crew import ParseTextCrew
 from hackathon.config.config import setup_logging
 from dotenv import load_dotenv
@@ -15,6 +17,7 @@ setup_logging()
 
 # Initialize Flask app
 app = Flask(__name__)
+CORS(app)
 logger = logging.getLogger("app")
 
 
