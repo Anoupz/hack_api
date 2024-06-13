@@ -13,12 +13,20 @@ parse_text_task:
           Output: "And(And(GreaterThanOrEqual([workflowCreatedDate], RelativeDate(Today(), -30, \"days\")), LessThanOrEqual([workflowCreatedDate], Today())))"
 
       Type-related examples:
-        - Input: "Show me contracts if record type NDA and Imported"
+        - Input: "Show me contracts of record type NDA and Imported"
           Output: "And(In([recordTypeId], \"nda\", \"imported\"))"
         - Input: "Show me contracts of record type NDA"
           Output: "And(Equals([recordTypeId], \"nda\"))"
         - Input: "Show me all the records with record type as nda and esa and imported"
           Output: "And(In([recordTypeId], \"nda\", \"esa\", \"imported\"))"
+
+
+      Counterparty-related examples:
+        - Input: "Show me contracts with Pepsi"
+          Output: "And(Equals([counterpartyName], \"Pepsi\"))"
+        - Input: "Show me all contracts that are not with Pepsi "
+          Output: "And(NotEqual([counterpartyName], \"Pepsi\"))"
+           
 
       Stage-related examples:
         - Input: "Show me contracts which are at the stage review"
