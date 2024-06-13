@@ -13,6 +13,8 @@ parse_text_task:
           Output: "And(And(GreaterThanOrEqual([workflowCreatedDate], RelativeDate(Today(), -30, \"days\")), LessThanOrEqual([workflowCreatedDate], Today())))"
         - Input: "Show me contracts that will expire in the next 7 days"
           Output: "And(And(LessThanOrEqual([expirationDate], RelativeDate(Today(), 7, \"days\")), GreaterThanOrEqual([expirationDate], Today())))"
+        - Input: "Show me contracts that will expire today"
+          Output: "And(Equals([expirationDate], Date(2024, 6, 13)))"  
       
 
 
