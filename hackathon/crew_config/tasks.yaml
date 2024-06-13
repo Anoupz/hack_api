@@ -31,3 +31,5 @@ parse_text_task:
           Output: "And(And(GreaterThanOrEqual([workflowCreatedDate], RelativeDate(Today(), -7, "days")), LessThanOrEqual([workflowCreatedDate], Today())), Equals([recordTypeId], "nda"))"
         - Input: "Show me contracts created in last 7 days and record type NDA and stage review"
           Output: "And(And(GreaterThanOrEqual([workflowCreatedDate], RelativeDate(Today(), -7, "days")), LessThanOrEqual([workflowCreatedDate], Today())), Equals([recordTypeId], "nda"), Equals([workflowDetailsCombinedStage], "review"))"
+        - Input: "Show completed NDA's in last 7 days"
+        - Output: "And(Equals([workflowDetailsCombinedStage], "completed"), Equals([recordTypeId], "nda"), And(GreaterThanOrEqual([workflowCreatedDate], RelativeDate(Today(), -14, "days")), LessThanOrEqual([workflowCreatedDate], Today())))"

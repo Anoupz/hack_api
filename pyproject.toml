@@ -6,7 +6,7 @@ authors = ["Anoop Narayanan <anoop.narayanan@ironcladhq.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "3.12.3"
+python = ">=3.10,<=3.13"
 requests = "^2.31.0"
 crewai = { extras = ["tools"], version = "^0.30.11" }
 flask = "^3.0.3"
