@@ -11,6 +11,10 @@ parse_text_task:
           Output: "And(And(GreaterThanOrEqual([workflowCreatedDate], RelativeDate(Today(), -7, \"days\")), LessThanOrEqual([workflowCreatedDate], Today())))"
         - Input: "Show me contracts created in the last month"
           Output: "And(And(GreaterThanOrEqual([workflowCreatedDate], RelativeDate(Today(), -30, \"days\")), LessThanOrEqual([workflowCreatedDate], Today())))"
+        - Input: "Show me contracts that will expire in the next 7 days"
+          Output: "And(And(LessThanOrEqual([expirationDate], RelativeDate(Today(), 7, \"days\")), GreaterThanOrEqual([expirationDate], Today())))"
+      
+
 
       Type-related examples:
         - Input: "Show me contracts of record type NDA and Imported"
